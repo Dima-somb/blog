@@ -1,0 +1,32 @@
+<div class="settings">
+  <div class="settings-wrapper">
+      <div class="settings-title">
+        <span class="settings-update-title">Update Your Account</span>
+        <span class="settings-delete-title">Delete Account</span>
+      </div>
+    <form class="settings-form">
+        <label>Profile picture</label>
+      <div class="settings-pp">
+        <img
+          src="assets/aaron-burden-unsplash.jpg"
+          alt=""
+        >
+        <label for="file-input">
+          <i class="settings-pp-icon far fa-user-circle"></i>
+        </label>
+        <input type="file" id="file-input" [ngStyle]="{display: 'none'}">
+      </div>
+      <label>Username</label>
+      <input type="text" placeholder="Safak">
+      <label>Email</label>
+      <input type="text" placeholder="enter email">
+      <label>Password</label>
+      <input type="password" placeholder="enter password">
+
+      <button class="settings-submit">Update</button>
+    </form>
+  </div>
+  <div class="settings-sidebar">
+    <app-sidebar></app-sidebar>
+  </div>
+</div>

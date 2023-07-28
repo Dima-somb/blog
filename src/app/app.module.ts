@@ -12,6 +12,7 @@ import { PostComponent } from './components/post/post.component';
 import { SingleComponent } from './pages/single/single.component';
 import { SinglePostComponent } from './components/single-post/single-post.component';
 import { WriteComponent } from './pages/write/write.component';
+import { SettingComponent } from './pages/setting/setting.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { WriteComponent } from './pages/write/write.component';
     PostComponent,
     SingleComponent,
     SinglePostComponent,
-    WriteComponent
+    WriteComponent,
+    SettingComponent
   ],
   imports: [
     BrowserModule,
