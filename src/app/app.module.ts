@@ -9,6 +9,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { PostsComponent } from './pages/posts/posts.component';
 import { PostComponent } from './components/post/post.component';
+import { SingleComponent } from './pages/single/single.component';
+import { SinglePostComponent } from './components/single-post/single-post.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { PostComponent } from './components/post/post.component';
     HeaderComponent,
     SidebarComponent,
     PostsComponent,
-    PostComponent
+    PostComponent,
+    SingleComponent,
+    SinglePostComponent
   ],
   imports: [
     BrowserModule,
