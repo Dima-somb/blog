@@ -13,6 +13,8 @@ import { SingleComponent } from './pages/single/single.component';
 import { SinglePostComponent } from './components/single-post/single-post.component';
 import { WriteComponent } from './pages/write/write.component';
 import { SettingComponent } from './pages/setting/setting.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { SettingComponent } from './pages/setting/setting.component';
     SingleComponent,
     SinglePostComponent,
     WriteComponent,
-    SettingComponent
+    SettingComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
