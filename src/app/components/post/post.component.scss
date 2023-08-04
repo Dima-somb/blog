@@ -1,5 +1,11 @@
+.post-list {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
 .post {
-  width: 385px;
+  width: 560px;
   margin: 0 25px 40px 25px;
 
   &-img {

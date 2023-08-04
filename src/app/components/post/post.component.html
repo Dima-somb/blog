@@ -1,18 +1,24 @@
-<div class="post">
-  <img class="post-img" src="assets/absolutvision-unsplash.jpg" alt="">
-  <div class="post-info">
-    <div class="post-cats">
-      <span class="post-cat">Music</span>
-      <span class="post-cat">Life</span>
-    </div>
-    <span class="post-title">
-      Lorem ipsum dolor sit amet
+<div class="post-list">
+  <div class="post" *ngFor="let post of posts">
+    <img class="post-img" src="assets/absolutvision-unsplash.jpg" alt="">
+    <div class="post-info">
+      <div class="post-cats" *ngIf="post.categories.length > 0;else noCategories">
+        <span class="post-cat" *ngFor="let category of post.categories">{{category}}</span>
+      </div>
+      <span class="post-title">
+      {{post?.title}}
     </span>
-    <hr>
-    <span class="post-date">1 hour ago</span>
-  </div>
-  <div class="post-desc">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deserunt, distinctio doloremque esse eum expedita laudantium nobis odit optio, placeat porro quidem similique ullam vel voluptates. Dolorem impedit pariatur repudiandae sequi! Aliquam autem deserunt dolorem eveniet expedita id quam qui quibusdam, quod reprehenderit.
-      Aspernatur beatae ea, hic inventore molestias praesentium.</p>
+      <hr>
+      <span class="post-date">{{post?.createdAt | date}}</span>
+    </div>
+    <div class="post-desc">
+      <p>{{post?.desc}}</p>
+    </div>
   </div>
 </div>
+
+<ng-template #noCategories>
+  <div class="post-cats">
+    <span class="post-cat">No categories</span>
+  </div>
+</ng-template>
