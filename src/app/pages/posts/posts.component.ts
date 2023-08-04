@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Post, PostsService} from "../../services/posts.service";
-import {Observable} from "rxjs";
+import {Observable, tap} from "rxjs";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-posts',
@@ -11,15 +12,17 @@ export class PostsComponent implements OnInit{
 
   posts$!: Observable<Post[]>;
 
-  constructor(private postsService: PostsService) {
+  constructor(private postsService: PostsService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.reloadPosts();
+
+    this.route.queryParams.subscribe((data) => this.reloadPosts(data["user"]))
   }
 
 
-  reloadPosts() {
-    this.posts$ = this.postsService.loadAllPosts();
+  reloadPosts(user?: string) {
+    this.posts$ = this.postsService.loadAllPosts(user);
   }
 }

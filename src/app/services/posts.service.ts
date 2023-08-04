@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable, shareReplay} from "rxjs";
 
 
@@ -33,8 +33,10 @@ export class PostsService {
 
   constructor(private http: HttpClient) { }
 
-  loadAllPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.baseUrl}/posts`)
+  loadAllPosts(user?: string): Observable<Post[]> {
+    const params = user ? new HttpParams().set('user', user as string) : {};
+
+    return this.http.get<Post[]>(`${this.baseUrl}/posts`, {params})
       .pipe(
         shareReplay()
       )
