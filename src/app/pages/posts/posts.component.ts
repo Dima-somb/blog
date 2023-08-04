@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Post, PostsService} from "../../services/posts.service";
 import {Observable, tap} from "rxjs";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Params} from "@angular/router";
+import {arrRemove} from "rxjs/internal/util/arrRemove";
 
 @Component({
   selector: 'app-posts',
@@ -18,11 +19,13 @@ export class PostsComponent implements OnInit{
   ngOnInit() {
     this.reloadPosts();
 
-    this.route.queryParams.subscribe((data) => this.reloadPosts(data["user"]))
+    this.route.queryParams.subscribe((data) => {
+      this.reloadPosts(data)
+    })
   }
 
 
-  reloadPosts(user?: string) {
-    this.posts$ = this.postsService.loadAllPosts(user);
+  reloadPosts(paramsList?: Params) {
+    this.posts$ = this.postsService.loadAllPosts(paramsList);
   }
 }
