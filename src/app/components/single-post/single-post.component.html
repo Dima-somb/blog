@@ -6,7 +6,7 @@
       class="single-post-img"
     >
     <h1 class="single-post-title">
-      Lorem ipsum dolor sit amet, consectetur
+     {{post.title}}
 
       <div class="single-post-edit">
         <i class="single-post-icon far fa-edit"></i>
@@ -15,16 +15,11 @@
     </h1>
 
     <div class="single-post-info">
-      <span class="single-post-author">Author: <b>Safak</b></span>
-      <span class="single-post-date">1 hour ago</span>
+      <span class="single-post-author">Author: <b>{{post.username}}</b></span>
+      <span class="single-post-date">{{post.createdAt | date}}</span>
     </div>
     <div class="single-post-desc">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aliquid cum debitis dolor et, facilis illo ipsa iste labore laboriosam
-        maxime officiis optio recusandae reiciendis soluta tempore voluptatem, voluptatibus.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aliquid cum debitis dolor et, facilis illo ipsa iste labore laboriosam
-        maxime officiis optio recusandae reiciendis soluta tempore voluptatem, voluptatibus.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aliquid cum debitis dolor et, facilis illo ipsa iste labore laboriosam
-        maxime officiis optio recusandae reiciendis soluta tempore voluptatem, voluptatibus.</p>
+      <p>{{post.desc}}</p>
     </div>
   </div>
 </div>

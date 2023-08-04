@@ -31,4 +31,10 @@ export class PostsService {
         shareReplay()
       )
   }
+  loadPostById(id: string | null): Observable<Post> {
+    return this.http.get<Post>(`${this.baseUrl}/posts/${id}`)
+      .pipe(
+        shareReplay()
+      )
+  }
 }

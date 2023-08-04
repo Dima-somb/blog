@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {Post} from "../../services/posts.service";
 
 @Component({
   selector: 'app-single-post',
@@ -6,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./single-post.component.scss']
 })
 export class SinglePostComponent {
+
+  @Input() post!: Post;
+
+  constructor(private route: ActivatedRoute) {
+  }
 
 }
