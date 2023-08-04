@@ -6,8 +6,8 @@
         <span class="post-cat" *ngFor="let category of post.categories">{{category}}</span>
       </div>
       <span class="post-title">
-      {{post?.title}}
-    </span>
+        <a [routerLink]="['/post/' + post._id]">{{post?.title}}</a>
+      </span>
       <hr>
       <span class="post-date">{{post?.createdAt | date}}</span>
     </div>
