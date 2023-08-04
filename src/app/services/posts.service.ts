@@ -15,6 +15,14 @@ export interface Post  {
   __v: number;
 }
 
+export interface Category {
+  _id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +41,13 @@ export class PostsService {
   }
   loadPostById(id: string | null): Observable<Post> {
     return this.http.get<Post>(`${this.baseUrl}/posts/${id}`)
+      .pipe(
+        shareReplay()
+      )
+  }
+
+  loadCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(`${this.baseUrl}/categories`)
       .pipe(
         shareReplay()
       )

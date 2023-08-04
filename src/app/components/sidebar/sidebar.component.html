@@ -13,24 +13,7 @@
   <div class="sidebar-item">
     <span class="sidebar-title">CATEGORIES</span>
     <ul class="sidebar-list">
-      <li class="sidebar-list-item">
-        Life
-      </li>
-      <li class="sidebar-list-item">
-        Music
-      </li>
-      <li class="sidebar-list-item">
-        Sport
-      </li>
-      <li class="sidebar-list-item">
-        Style
-      </li>
-      <li class="sidebar-list-item">
-        Tech
-      </li>
-      <li class="sidebar-list-item">
-        Cinema
-      </li>
+      <li class="sidebar-list-item" *ngFor="let category of categories$ | async">{{category.name}}</li>
     </ul>
   </div>
   <div class="sidebar-item">
