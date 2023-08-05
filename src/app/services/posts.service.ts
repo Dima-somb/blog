@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {Observable, shareReplay} from "rxjs";
+import {Observable, shareReplay, tap} from "rxjs";
 import {Params} from "@angular/router";
 
 
@@ -65,4 +65,5 @@ export class PostsService {
         shareReplay()
       )
   }
+
 }

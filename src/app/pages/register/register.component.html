@@ -1,13 +1,53 @@
 <div class="register">
   <span class="register-title">Register</span>
-  <form class="register-form">
+  <form class="register-form" [formGroup]="registerFormGroup" (ngSubmit)="submitForm()">
     <label>Username</label>
-    <input type="text" class="register-input" placeholder="Enter your username...">
+    <input
+      class="register-input"
+      placeholder="Enter your username..."
+      formControlName="username"
+      [ngClass]="{invalid: registerFormGroup.get('username')?.touched && registerFormGroup.get('username')?.invalid }"
+    >
+    <div *ngIf="registerFormGroup.get('username')?.touched && registerFormGroup.get('username')?.invalid " class="validation">
+        <small *ngIf="registerFormGroup.get('username')?.hasError('required')">
+          This is a required field.
+        </small>
+    </div>
     <label>Email</label>
-    <input type="text" class="register-input" placeholder="Enter your email...">
+    <input
+           class="register-input"
+           placeholder="Enter your email..."
+           formControlName="email"
+           [ngClass]="{invalid: registerFormGroup.get('email')?.touched && registerFormGroup.get('email')?.invalid }"
+    >
+    <div *ngIf="registerFormGroup.get('email')?.touched && registerFormGroup.get('email')?.invalid " class="validation">
+      <small *ngIf="registerFormGroup.get('email')?.hasError('required')">
+        This is a required field.
+      </small>
+      <small *ngIf="registerFormGroup.get('email')?.hasError('email')">
+        Please enter a valid email address!
+      </small>
+    </div>
     <label>Password</label>
-    <input type="text" class="register-input" placeholder="Enter your password...">
-    <button class="register-button">Register</button>
+    <input
+           class="register-input"
+           placeholder="Enter your password..."
+           formControlName="password"
+           [ngClass]="{invalid: registerFormGroup.get('password')?.touched && registerFormGroup.get('password')?.invalid }"
+    >
+    <div *ngIf="registerFormGroup.get('password')?.touched && registerFormGroup.get('password')?.invalid " class="validation">
+      <small *ngIf="registerFormGroup.get('password')?.hasError('required')">
+        This is a required field.
+      </small>
+    </div>
+    <button
+            class="register-button"
+            [disabled]="this.registerFormGroup.invalid"
+    >
+      Register</button>
   </form>
-  <button class="register-login" [routerLink]="['/login']">Login</button>
+  <button
+    class="register-login"
+    [routerLink]="['/login']"
+  >Login</button>
 </div>
