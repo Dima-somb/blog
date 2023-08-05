@@ -7,7 +7,8 @@ import {SingleComponent} from "./pages/single/single.component";
 import {LoginComponent} from "./pages/login/login.component";
 
 const routes: Routes = [
-  { path: '', component: HomeComponent},
+  {path: '', redirectTo: '', pathMatch: "full"},
+  {path: '', component: HomeComponent},
   {
     path: 'post/:id',
     component: SingleComponent,
