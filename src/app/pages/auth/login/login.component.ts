@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {PostsService} from "../../services/posts.service";
+import {PostsService} from "../../../services/posts.service";
 
 @Component({
   selector: 'app-login',

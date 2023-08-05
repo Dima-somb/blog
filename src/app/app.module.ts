@@ -13,12 +13,13 @@ import { SingleComponent } from './pages/single/single.component';
 import { SinglePostComponent } from './components/single-post/single-post.component';
 import { WriteComponent } from './pages/write/write.component';
 import { SettingComponent } from './pages/setting/setting.component';
-import { LoginComponent } from './pages/login/login.component';
+import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import {AuthModule} from "./pages/auth/auth.module";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     SinglePostComponent,
     WriteComponent,
     SettingComponent,
-    LoginComponent,
     RegisterComponent
   ],
   imports: [
@@ -41,6 +41,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    AuthModule.forRoot(),
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
