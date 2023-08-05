@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../reducers";
 import {login} from "../actions/auth.actions";
+import {AuthActions} from "../action-types";
 
 @Component({
   selector: 'app-login',
@@ -39,7 +40,7 @@ export class LoginComponent implements OnInit {
       .pipe(
         tap(user => {
 
-          this.store.dispatch(login({user}))
+          this.store.dispatch(AuthActions.login({user}))
 
 
           this.router.navigate(['/'])

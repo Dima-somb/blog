@@ -1,8 +1,5 @@
 <div class="register">
   <span class="register-title" [ngClass]="{'error-registration': errorRegistration}">{{errorRegistration ? 'User already exists' : 'Register'}}</span>
-<!--  <div  class="error-registration" *ngIf="!errorRegistration">-->
-<!--    <h2>User already exists</h2>-->
-<!--  </div>-->
   <form class="register-form" [formGroup]="registerFormGroup" (ngSubmit)="submitForm()">
     <label>Username</label>
     <input

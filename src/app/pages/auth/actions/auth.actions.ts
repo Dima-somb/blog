@@ -5,4 +5,6 @@ export const login = createAction(
   props<{user: any}>()
 )
 
-
+export const logout = createAction(
+  "[Top Menu] Logout"
+)
