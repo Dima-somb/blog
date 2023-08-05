@@ -19,12 +19,11 @@ export class Auth {
 
 
   authRegister(val: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/auth/register`, val)
-      .pipe(
-        tap((user) => {
-          console.log(user);
-        })
-      )
+    return this.http.post<any>(`${this.baseUrl}/auth/register`, val);
+  }
+
+  authLogin(val: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/auth/login`, val);
   }
 
 }

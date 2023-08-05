@@ -5,6 +5,7 @@ import {LoginComponent} from "./login/login.component";
 import {RouterModule} from "@angular/router";
 import {StoreModule} from "@ngrx/store";
 import {authReducer} from "./reducers";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -13,6 +14,7 @@ import {authReducer} from "./reducers";
   declarations: [LoginComponent],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule.forChild([{path: 'login', component: LoginComponent}]),
     StoreModule.forFeature(
       'auth',

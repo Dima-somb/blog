@@ -20,6 +20,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {AuthModule} from "./pages/auth/auth.module";
+import {metaReducers, reducers} from "./reducers";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import {AuthModule} from "./pages/auth/auth.module";
     HttpClientModule,
     ReactiveFormsModule,
     AuthModule.forRoot(),
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(reducers, {metaReducers}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],
