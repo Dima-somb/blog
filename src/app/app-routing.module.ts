@@ -4,6 +4,7 @@ import {RegisterComponent} from "./pages/register/register.component";
 import {HomeComponent} from "./pages/home/home.component";
 import {PostResolver} from "./services/post-resolver";
 import {SingleComponent} from "./pages/single/single.component";
+import {LoginComponent} from "./pages/login/login.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -14,7 +15,7 @@ const routes: Routes = [
       post: PostResolver
     }
   },
-  // {path: 'login', component: LoginComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
 ];
 
