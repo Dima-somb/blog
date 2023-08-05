@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import {Auth} from "../../services/auth";
 import {LoginComponent} from "./login/login.component";
 import {RouterModule} from "@angular/router";
+import {StoreModule} from "@ngrx/store";
+import {authReducer} from "./reducers";
 
 
 
@@ -12,6 +14,10 @@ import {RouterModule} from "@angular/router";
   imports: [
     CommonModule,
     RouterModule.forChild([{path: 'login', component: LoginComponent}]),
+    StoreModule.forFeature(
+      'auth',
+      authReducer,
+    )
   ],
   exports: [LoginComponent]
 })
