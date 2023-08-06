@@ -16,6 +16,7 @@ import {AuthActions} from "../action-types";
 export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
+  errorMessage = "";
 
   constructor(
     private fb: FormBuilder,
@@ -33,7 +34,6 @@ export class LoginComponent implements OnInit {
 
   login() {
 
-    console.log('click')
     const value = this.loginForm.value;
 
     this.auth.authLogin(value)
@@ -48,7 +48,14 @@ export class LoginComponent implements OnInit {
       )
       .subscribe(
         noop,
-        () => console.log('Login Failed')
+        () => {
+          this.errorMessage = "Invalid username or password";
+          this.loginForm.reset();
+
+          setTimeout(() => {
+            this.errorMessage = '';
+          }, 2000)
+        }
       )
   }
 }
