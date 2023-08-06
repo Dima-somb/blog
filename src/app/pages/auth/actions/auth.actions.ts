@@ -1,8 +1,9 @@
 import {createAction, props} from "@ngrx/store";
+import {User} from "../reducers";
 
 export const login = createAction(
   "[Login Page] User Action",
-  props<{user: any}>()
+  props<{user: User}>()
 )
 
 export const logout = createAction(

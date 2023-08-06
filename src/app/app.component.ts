@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AppState} from "./reducers";
 import {Store} from "@ngrx/store";
-import {map, Observable} from "rxjs";
+import {login} from "./pages/auth/actions/auth.actions";
 
 @Component({
   selector: 'app-root',
@@ -16,6 +16,12 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    const userProfile = localStorage.getItem("user");
+
+    if (userProfile) {
+      this.store.dispatch(login({user: JSON.parse(userProfile)}));
+    }
 
   }
 }

@@ -6,6 +6,8 @@ import {RouterModule} from "@angular/router";
 import {StoreModule} from "@ngrx/store";
 import {authReducer} from "./reducers";
 import {ReactiveFormsModule} from "@angular/forms";
+import {EffectsModule} from "@ngrx/effects";
+import {AuthEffects} from "./effects/auth.effects";
 
 
 
@@ -19,7 +21,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     StoreModule.forFeature(
       'auth',
       authReducer,
-    )
+    ),
+    EffectsModule.forFeature([AuthEffects]),
   ],
   exports: [LoginComponent]
 })
