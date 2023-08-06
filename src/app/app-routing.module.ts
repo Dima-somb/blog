@@ -4,11 +4,15 @@ import {RegisterComponent} from "./pages/register/register.component";
 import {HomeComponent} from "./pages/home/home.component";
 import {PostResolver} from "./services/post-resolver";
 import {SingleComponent} from "./pages/single/single.component";
-import {LoginComponent} from "./pages/auth/login/login.component";
+import {AuthGuard} from "./pages/auth/services/auth-guard";
 
 const routes: Routes = [
-  {path: '', redirectTo: '', pathMatch: "full"},
-  {path: '', component: HomeComponent},
+  {path: '', redirectTo: '/home', pathMatch: "full"},
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard]
+  },
   {
     path: 'post/:id',
     component: SingleComponent,
@@ -23,6 +27,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [PostResolver]
+  providers: [PostResolver, AuthGuard]
 })
 export class AppRoutingModule { }

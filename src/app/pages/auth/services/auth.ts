@@ -10,7 +10,6 @@ const AUTH_DATA = "auth_data";
 })
 export class Auth {
 
-
   baseUrl = 'http://localhost:3000/api';
 
   constructor(

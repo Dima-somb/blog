@@ -15,7 +15,7 @@
     <ul class="sidebar-list">
       <li class="sidebar-list-item"
           *ngFor="let category of categories$ | async"
-          [routerLink]="['/']" [queryParams]="{cat: category.name}"
+          [routerLink]="['/home']" [queryParams]="{cat: category.name}"
       >
         {{category.name}}
       </li>

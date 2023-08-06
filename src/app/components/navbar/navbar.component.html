@@ -7,12 +7,11 @@
   </div>
   <div class="center">
     <ul class="list">
-      <li><a href="">HOME</a></li>
-      <li><a href="">ABOUT</a></li>
-      <li><a href="">CONTACT</a></li>
-      <li><a href="">WRITE</a></li>
-      <li><a *ngIf="isLoggedIn$ | async">LOGIN</a></li>
-      <li><a *ngIf="isLoggedOut$ | async" (click)="logout()">LOGOUT</a></li>
+      <li><a routerLink="home">HOME</a></li>
+      <li><a>ABOUT</a></li>
+      <li><a>CONTACT</a></li>
+      <li><a>WRITE</a></li>
+      <li><a *ngIf="isLoggedIn$ | async" (click)="logout()">LOGOUT</a></li>
     </ul>
   </div>
   <div class="right">

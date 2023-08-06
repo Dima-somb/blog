@@ -1,6 +1,6 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {Auth} from "../../services/auth";
+import {Auth} from "./services/auth";
 import {LoginComponent} from "./login/login.component";
 import {RouterModule} from "@angular/router";
 import {StoreModule} from "@ngrx/store";
