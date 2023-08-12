@@ -13,7 +13,7 @@ import {selectPostsStore} from "../../store/selectors/posts.selector";
 })
 export class PostsComponent implements OnInit{
 
-  @Input() postsList!: Post[] | null;
+  // @Input() postsList!: Post[] | null;
   // posts$!: Observable<Post[]>;
 
   postList$: Observable<Post[]> = this.store.select(selectPostsStore);

@@ -1,7 +1,6 @@
 import {Post} from "../../services/posts.service";
 import {createReducer, on} from "@ngrx/store";
 import {PostActions} from "../action-types";
-import {state} from "@angular/animations";
 
 export interface PostState {
   posts: Post[];

@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
 import {Post, PostsService} from "./posts.service";
-import {filter, first, map, Observable, of, tap} from "rxjs";
-import {Store} from "@ngrx/store";
+import {filter, first, map, Observable, of, switchAll, switchMap, take, tap} from "rxjs";
+import {select, Store} from "@ngrx/store";
 import {AppState} from "../index";
 import {PostActions} from "../store/action-types";
 import {selectPostByIdStore} from "../store/selectors/posts.selector";
@@ -19,11 +19,12 @@ export class PostResolver implements Resolve<Post> {
 
     this.store.dispatch(PostActions.loadPostByID({id: postId}));
 
-     return this.store.select(selectPostByIdStore).pipe(
-       first(),
-       filter(post => post !== null),
-       map(post => post!)
-     );
-  }
+    return this.store.select(selectPostByIdStore).pipe(
+      filter(post => post !== null),
+      first(),
+      map(post => post!)
+    );
 
+  }
 }
+

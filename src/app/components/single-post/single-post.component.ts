@@ -11,7 +11,7 @@ export class SinglePostComponent {
 
   @Input() post!: Post;
 
-  constructor(private route: ActivatedRoute) {
+  constructor() {
   }
 
 }
