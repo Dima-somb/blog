@@ -2,6 +2,10 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Post, PostsService} from "../../services/posts.service";
 import {ActivatedRoute} from "@angular/router";
 import {Observable} from "rxjs";
+import {AppState} from "../../index";
+import {Store} from "@ngrx/store";
+import {PostActions} from "../../store/action-types";
+import {selectPostsStore} from "../../store/selectors/posts.selector";
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
@@ -12,11 +16,23 @@ export class PostsComponent implements OnInit{
   @Input() postsList!: Post[] | null;
   // posts$!: Observable<Post[]>;
 
-  constructor(private postsService: PostsService, private route: ActivatedRoute) {
+  postList$: Observable<Post[]> = this.store.select(selectPostsStore);
+
+  constructor(
+    private postsService: PostsService,
+    private route: ActivatedRoute,
+    private store: Store<AppState>
+    ) {
   }
 
   ngOnInit() {
-    console.log('postsList', this.postsList);
+
+    this.route.queryParams.subscribe((data) => {
+      this.store.dispatch(PostActions.loadAllPosts(data))
+    })
+
+
+
     // this.reloadPosts();
 
     // TODO: Fix get data using queryParams by NgRx

@@ -4,7 +4,6 @@ import {AppState} from "../../index";
 import {Observable} from "rxjs";
 import {Post} from "../../services/posts.service";
 import {selectPostsStore} from "../../store/selectors/posts.selector";
-import {PostActions} from "../../store/action-types";
 
 
 @Component({
@@ -20,7 +19,7 @@ export class HomeComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.store.dispatch(PostActions.loadAllPosts());
+    // this.store.dispatch(PostActions.loadAllPosts({data: null}));
   }
 
 }
