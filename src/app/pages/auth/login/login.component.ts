@@ -5,7 +5,6 @@ import {noop, tap} from "rxjs";
 import {Router} from "@angular/router";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../reducers";
-import {login} from "../actions/auth.actions";
 import {AuthActions} from "../action-types";
 
 @Component({

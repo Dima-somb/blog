@@ -14,8 +14,8 @@
       <li><a *ngIf="isLoggedIn$ | async" (click)="logout()">LOGOUT</a></li>
     </ul>
   </div>
-  <div class="right">
-    <img class="right-image" src="https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="">
+  <div class="right" *ngIf="user$ | async as user">
+    <img class="right-image" [src]="user.profilePic" alt="">
     <i class="search-icon fa-solid fa-magnifying-glass"></i>
   </div>
 </div>

@@ -17,10 +17,10 @@ export class PostsComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.reloadPosts();
+    // this.reloadPosts();
 
     this.route.queryParams.subscribe((data) => {
-      this.reloadPosts(data)
+      this.reloadPosts(data);
     })
   }
 

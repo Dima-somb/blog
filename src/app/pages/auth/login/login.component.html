@@ -10,6 +10,7 @@
     <label>Password</label>
     <input
       class="login-input"
+      type="password"
       placeholder="Enter your password..."
       formControlName="password"
     >
@@ -21,6 +22,9 @@
       Login
     </button>
   </form>
-  <p [style.color]="'red'">{{this.errorMessage}}</p>
+  <div class="fixed-space">
+    <p [style.color]="'red'">{{this.errorMessage}}</p>
+  </div>
+
   <button class="login-register" [routerLink]="['/register']">Register</button>
 </div>
