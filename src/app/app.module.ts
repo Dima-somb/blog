@@ -20,7 +20,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {AuthModule} from "./pages/auth/auth.module";
-import {metaReducers, reducers} from "./reducers";
+import {metaReducers, reducers} from "./index";
 import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({

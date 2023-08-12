@@ -1,6 +1,6 @@
 import {ActionReducer, ActionReducerMap, MetaReducer} from "@ngrx/store";
-import {environment} from "../../environments/environment";
-import {authReducer, AuthState} from "../pages/auth/reducers";
+import {environment} from "../environments/environment";
+import {authReducer, AuthState} from "./pages/auth/reducers";
 import {storeLogger} from "ngrx-store-logger";
 
 export interface AppState {

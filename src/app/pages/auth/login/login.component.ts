@@ -4,7 +4,7 @@ import {Auth} from "../services/auth";
 import {noop, tap} from "rxjs";
 import {Router} from "@angular/router";
 import {Store} from "@ngrx/store";
-import {AppState} from "../../../reducers";
+import {AppState} from "../../../index";
 import {AuthActions} from "../action-types";
 
 @Component({

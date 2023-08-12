@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AppState} from "./reducers";
+import {AppState} from "./index";
 import {Store} from "@ngrx/store";
 import {login} from "./pages/auth/actions/auth.actions";
 
