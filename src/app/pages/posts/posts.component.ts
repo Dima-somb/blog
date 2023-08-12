@@ -1,9 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Post, PostsService} from "../../services/posts.service";
-import {Observable, tap} from "rxjs";
-import {ActivatedRoute, Params} from "@angular/router";
-import {arrRemove} from "rxjs/internal/util/arrRemove";
-
+import {ActivatedRoute} from "@angular/router";
+import {Observable} from "rxjs";
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
@@ -11,21 +9,24 @@ import {arrRemove} from "rxjs/internal/util/arrRemove";
 })
 export class PostsComponent implements OnInit{
 
-  posts$!: Observable<Post[]>;
+  @Input() postsList!: Post[] | null;
+  // posts$!: Observable<Post[]>;
 
   constructor(private postsService: PostsService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    console.log('postsList', this.postsList);
     // this.reloadPosts();
 
-    this.route.queryParams.subscribe((data) => {
-      this.reloadPosts(data);
-    })
+    // TODO: Fix get data using queryParams by NgRx
+    // this.route.queryParams.subscribe((data) => {
+    //   this.reloadPosts(data);
+    // })
   }
 
 
-  reloadPosts(paramsList?: Params) {
-    this.posts$ = this.postsService.loadAllPosts(paramsList);
-  }
+  // reloadPosts(paramsList?: Params) {
+  //   this.posts$ = this.postsService.loadAllPosts(paramsList);
+  // }
 }

@@ -1,5 +1,6 @@
 import {Post} from "../../services/posts.service";
-import {createReducer} from "@ngrx/store";
+import {createReducer, on} from "@ngrx/store";
+import {PostActions} from "../action-types";
 
 export interface PostState {
   posts: Post[];
@@ -14,5 +15,15 @@ export const initialState: PostState = {
 export const postReducer = createReducer(
   initialState,
 
-  on()
+  on(PostActions.loadAllPosts, state => ({
+    ...state,
+  })),
+  on(PostActions.loadAllPostsSuccess,  (state,{ posts }) => ({
+    ...state,
+    posts
+  })),
+  on(PostActions.loadAllPostsFailure,  (state, {error}) => ({
+    ...state,
+    error
+  })),
 );

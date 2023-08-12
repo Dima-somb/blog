@@ -13,7 +13,6 @@ import { SingleComponent } from './pages/single/single.component';
 import { SinglePostComponent } from './components/single-post/single-post.component';
 import { WriteComponent } from './pages/write/write.component';
 import { SettingComponent } from './pages/setting/setting.component';
-import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -22,6 +21,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {AuthModule} from "./pages/auth/auth.module";
 import {metaReducers, reducers} from "./index";
 import { EffectsModule } from '@ngrx/effects';
+import {PostsEffects} from "./store/effects/posts.effects";
 
 @NgModule({
   declarations: [
@@ -46,7 +46,7 @@ import { EffectsModule } from '@ngrx/effects';
     AuthModule.forRoot(),
     StoreModule.forRoot(reducers, {metaReducers}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([PostsEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

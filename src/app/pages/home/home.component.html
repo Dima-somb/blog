@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="home">
   <div class="home-posts">
-    <app-posts></app-posts>
+    <app-posts [postsList]="postList$ | async"></app-posts>
   </div>
  <div class="home-sidebar">
     <app-sidebar></app-sidebar>
