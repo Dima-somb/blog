@@ -14,7 +14,6 @@ const LOAD_POST_BY_ID_FAILURE = '[Post] load post by ID failure';
 
 export const loadAllPosts = createAction(
   LOAD_ALL_POSTS,
-  props<{data?: any}>()
 );
 
 export const loadAllPostsSuccess = createAction(

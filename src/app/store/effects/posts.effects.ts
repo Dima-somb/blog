@@ -2,22 +2,34 @@ import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {PostsService} from "../../services/posts.service";
 import {PostActions} from "../action-types";
-import {catchError, concatMap, map, mergeMap, of} from "rxjs";
+import {catchError, concatMap, map, mergeMap, of, withLatestFrom} from "rxjs";
+import {AppState} from "../../index";
+import {Store} from "@ngrx/store";
+import {selectPostsStore} from "../selectors/posts.selector";
 
 @Injectable()
 export class PostsEffects {
 
-  constructor(private actions$: Actions, private postsService: PostsService) {}
+  constructor(
+    private actions$: Actions,
+    private postsService: PostsService,
+    private store: Store<AppState>
+  ) {}
 
   loadAllPosts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(PostActions.loadAllPosts),
-      mergeMap((data) =>
-        this.postsService.loadAllPosts(data).pipe(
-          map(posts => PostActions.loadAllPostsSuccess({ posts } )),
-          catchError(error => of(PostActions.loadAllPostsFailure({ error })))
-        )
-      )
+      withLatestFrom(this.store.select(selectPostsStore)),
+      mergeMap(([action, posts]) => {
+        if (posts.length > 0) {
+          return of(); // No need to proceed, return an empty observable
+        } else {
+          return this.postsService.loadAllPosts().pipe(
+            map(loadedPosts => PostActions.loadAllPostsSuccess({ posts: loadedPosts })),
+            catchError(error => of(PostActions.loadAllPostsFailure({ error })))
+          );
+        }
+      })
     )
   );
 

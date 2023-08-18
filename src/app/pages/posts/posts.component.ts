@@ -26,10 +26,7 @@ export class PostsComponent implements OnInit{
   }
 
   ngOnInit() {
-
-    this.route.queryParams.subscribe((data) => {
-      this.store.dispatch(PostActions.loadAllPosts(data))
-    })
+    this.store.dispatch(PostActions.loadAllPosts());
 
 
 
