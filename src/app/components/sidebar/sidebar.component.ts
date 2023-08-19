@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
-import {Category, PostsService} from "../../services/posts.service";
+import {Category} from "../../services/posts.service";
+import {AppState} from "../../index";
+import {Store} from "@ngrx/store";
+import {selectCategories} from "../../store/selectors/posts.selector";
+import {PostActions} from "../../store/action-types";
 
 @Component({
   selector: 'app-sidebar',
@@ -8,17 +12,12 @@ import {Category, PostsService} from "../../services/posts.service";
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  categories$!: Observable<Category[]>;
+  categories$: Observable<Category[] | null> = this.store.select(selectCategories);
 
-  constructor(private postsServices: PostsService) {
+  constructor(private store: Store<AppState>) {
   }
 
   ngOnInit(): void {
-    this.loadCategories();
+    this.store.dispatch(PostActions.loadAllCategories());
   }
-
-  loadCategories() {
-    this.categories$ = this.postsServices.loadCategories();
-  }
-
 }

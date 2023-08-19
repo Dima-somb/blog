@@ -1,9 +1,10 @@
-import {Post} from "../../services/posts.service";
+import {Category, Post} from "../../services/posts.service";
 import {createReducer, on} from "@ngrx/store";
 import {PostActions} from "../action-types";
 
 export interface PostState {
   posts: Post[];
+  categories: Category[] | null;
   selectedPost: Post | null;
   error: string | null,
   isFetching: boolean;
@@ -12,8 +13,9 @@ export interface PostState {
 export const initialState: PostState = {
   posts: [],
   selectedPost: null,
+  categories: null,
   error: null,
-  isFetching: false
+  isFetching: false,
 }
 
 export const postReducer = createReducer(
@@ -46,4 +48,18 @@ export const postReducer = createReducer(
     error
   })),
 
+
+  //GET Categories
+  on(PostActions.loadAllCategories, state => ({
+    ...state,
+  })),
+  on(PostActions.loadAllCategoriesSuccess,  (state,{ categories }) => ({
+    ...state,
+    categories,
+    isFetching: true
+  })),
+  on(PostActions.loadAllCategoriesFailure,  (state, { error }) => ({
+    ...state,
+    error
+  })),
 );

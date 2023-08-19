@@ -16,7 +16,6 @@ export class SingleComponent implements OnInit{
 
   ngOnInit(): void {
     this.post = this.route.snapshot.data["post"];
-    console.log('this.post', this.post)
   }
 
 }

@@ -5,7 +5,7 @@ import {PostActions} from "../action-types";
 import {catchError, concatMap, map, mergeMap, of, withLatestFrom} from "rxjs";
 import {AppState} from "../../index";
 import {Store} from "@ngrx/store";
-import {selectPostsStore} from "../selectors/posts.selector";
+import {selectCategories, selectPostsStore} from "../selectors/posts.selector";
 
 @Injectable()
 export class PostsEffects {
@@ -41,6 +41,23 @@ export class PostsEffects {
           map(post => PostActions.loadPostByIDSuccess({ post }))
         )
       )
+    )
+  );
+
+  loadAllCategories$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(PostActions.loadAllCategories),
+      withLatestFrom(this.store.select(selectCategories)),
+      mergeMap(([action, categories]) => {
+        if (categories) {
+          return of(); // No need to proceed, return an empty observable
+        } else {
+          return this.postsService.loadCategories().pipe(
+            map(categories => PostActions.loadAllCategoriesSuccess({categories})),
+            catchError(error => of(PostActions.loadAllCategoriesFailure({ error })))
+          );
+        }
+      })
     )
   );
 }

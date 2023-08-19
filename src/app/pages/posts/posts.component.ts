@@ -5,7 +5,11 @@ import {Observable, of} from "rxjs";
 import {AppState} from "../../index";
 import {Store} from "@ngrx/store";
 import {PostActions} from "../../store/action-types";
-import {selectPostsByName, selectPostsStore} from "../../store/selectors/posts.selector";
+import {
+  selectPostByCategoryName,
+  selectPostsByName,
+  selectPostsStore
+} from "../../store/selectors/posts.selector";
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
@@ -25,12 +29,13 @@ export class PostsComponent implements OnInit{
   ngOnInit() {
     this.store.dispatch(PostActions.loadAllPosts());
 
-    this.route.queryParams.subscribe(({user}) => {
-      this.getPosts(user);
+    this.route.queryParams.subscribe(({user, cat}) => {
+      this.getPostsByUsername(user);
+      this.getPostsByCategoryName(cat)
     })
   }
 
-  getPosts(username: string) {
+  getPostsByUsername(username: string) {
       if(username) {
         this.store.select(selectPostsByName(username))
           .subscribe(posts => this.postList = posts)
@@ -38,5 +43,14 @@ export class PostsComponent implements OnInit{
         this.store.select(selectPostsStore)
             .subscribe(posts => this.postList = posts);
       }
+  }
+
+  getPostsByCategoryName(cat: string) {
+    if(cat) {
+    this.store.select(selectPostByCategoryName(cat))
+        .subscribe(posts => {
+          this.postList = posts
+        })
+    }
   }
 }
