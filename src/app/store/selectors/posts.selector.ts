@@ -10,6 +10,5 @@ export const selectPostByIdStore = createSelector(selectPostsState, state => sta
 
 
 export const selectPostsByName = (name: any) => createSelector(selectPostsStore, posts => {
-  console.log('name', name)
    return posts.filter(({username}) => username === name);
 })

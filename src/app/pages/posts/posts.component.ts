@@ -13,9 +13,6 @@ import {selectPostsByName, selectPostsStore} from "../../store/selectors/posts.s
 })
 export class PostsComponent implements OnInit{
 
-  // @Input() postsList!: Post[] | null;
-  // posts$!: Observable<Post[]>;
-
   postList!: Post[];
 
   constructor(
@@ -29,28 +26,17 @@ export class PostsComponent implements OnInit{
     this.store.dispatch(PostActions.loadAllPosts());
 
     this.route.queryParams.subscribe(({user}) => {
-      if(user) {
-
-        this.store.select(selectPostsByName(user)).subscribe(posts => {
-          this.postList = posts;
-        })
-      } else {
-        this.store.select(selectPostsStore).subscribe(posts => {
-          this.postList = posts
-        });
-      }
+      this.getPosts(user);
     })
-
-    // this.reloadPosts();
-
-    // TODO: Fix get data using queryParams by NgRx
-    // this.route.queryParams.subscribe((data) => {
-    //   this.reloadPosts(data);
-    // })
   }
 
-
-  // reloadPosts(paramsList?: Params) {
-  //   this.posts$ = this.postsService.loadAllPosts(paramsList);
-  // }
+  getPosts(username: string) {
+      if(username) {
+        this.store.select(selectPostsByName(username))
+          .subscribe(posts => this.postList = posts)
+      } else {
+        this.store.select(selectPostsStore)
+            .subscribe(posts => this.postList = posts);
+      }
+  }
 }

@@ -8,21 +8,7 @@ import {Post} from "../../services/posts.service";
   templateUrl: './single-post.component.html',
   styleUrls: ['./single-post.component.scss']
 })
-export class SinglePostComponent implements OnInit{
-
-
-
+export class SinglePostComponent {
   @Input() post!: Post;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-
-  }
-
-  // filterPostsOnHomeComp() {
-  //   this.store.select(selectPostByName(this.post.username)).subscribe();
-  //   this.router.navigate(['/home']);
-  // }
+  
 }
