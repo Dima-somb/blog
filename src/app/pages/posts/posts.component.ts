@@ -1,11 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Post, PostsService} from "../../services/posts.service";
 import {ActivatedRoute} from "@angular/router";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {AppState} from "../../index";
 import {Store} from "@ngrx/store";
 import {PostActions} from "../../store/action-types";
-import {selectPostsStore} from "../../store/selectors/posts.selector";
+import {selectPostsByName, selectPostsStore} from "../../store/selectors/posts.selector";
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
@@ -16,7 +16,7 @@ export class PostsComponent implements OnInit{
   // @Input() postsList!: Post[] | null;
   // posts$!: Observable<Post[]>;
 
-  postList$: Observable<Post[]> = this.store.select(selectPostsStore);
+  postList!: Post[];
 
   constructor(
     private postsService: PostsService,
@@ -28,7 +28,18 @@ export class PostsComponent implements OnInit{
   ngOnInit() {
     this.store.dispatch(PostActions.loadAllPosts());
 
+    this.route.queryParams.subscribe(({user}) => {
+      if(user) {
 
+        this.store.select(selectPostsByName(user)).subscribe(posts => {
+          this.postList = posts;
+        })
+      } else {
+        this.store.select(selectPostsStore).subscribe(posts => {
+          this.postList = posts
+        });
+      }
+    })
 
     // this.reloadPosts();
 

@@ -15,7 +15,12 @@
     </h1>
 
     <div class="single-post-info">
-      <span class="single-post-author">Author: <b><a [routerLink]="['/home']" [queryParams]="{user: post.username}">{{post.username}}</a></b></span>
+      <span class="single-post-author">Author: <b><a
+        [routerLink]="['/home']"
+        [queryParams]="{user: post.username}"
+      >
+        {{post.username}}
+      </a></b></span>
       <span class="single-post-date">{{post.createdAt | date}}</span>
     </div>
     <div class="single-post-desc">

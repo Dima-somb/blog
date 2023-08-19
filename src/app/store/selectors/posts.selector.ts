@@ -9,3 +9,7 @@ export const selectPostsStore = createSelector(selectPostsState, state => state.
 export const selectPostByIdStore = createSelector(selectPostsState, state => state.selectedPost);
 
 
+export const selectPostsByName = (name: any) => createSelector(selectPostsStore, posts => {
+  console.log('name', name)
+   return posts.filter(({username}) => username === name);
+})

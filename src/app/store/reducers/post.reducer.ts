@@ -5,13 +5,15 @@ import {PostActions} from "../action-types";
 export interface PostState {
   posts: Post[];
   selectedPost: Post | null;
-  error: string | null
+  error: string | null,
+  isFetching: boolean;
 }
 
 export const initialState: PostState = {
   posts: [],
   selectedPost: null,
-  error: null
+  error: null,
+  isFetching: false
 }
 
 export const postReducer = createReducer(
@@ -23,7 +25,8 @@ export const postReducer = createReducer(
   })),
   on(PostActions.loadAllPostsSuccess,  (state,{ posts }) => ({
     ...state,
-    posts
+    posts,
+    isFetching: true
   })),
   on(PostActions.loadAllPostsFailure,  (state, { error }) => ({
     ...state,
