@@ -36,7 +36,7 @@ export class PostsService {
 
 
   loadAllPosts(paramsList?: Params): Observable<Post[]> {
-    console.log('paramsList', paramsList)
+
     let params = new HttpParams();
 
     if(paramsList) {

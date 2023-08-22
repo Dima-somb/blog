@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
 
     this.auth.authLogin(value)
       .pipe(
-        tap(user => this.store.dispatch(AuthActions.login({user}))
+        tap(user => this.store.dispatch(AuthActions.login({user, redirect: true}))
         )
       )
       .subscribe(

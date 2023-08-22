@@ -12,9 +12,12 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.login),
-        tap((action) => {
-          localStorage.setItem("user", JSON.stringify(action["user"]));
-          this.router.navigate(["/home"]);
+        tap(({user, redirect}) => {
+          localStorage.setItem("user", JSON.stringify(user));
+
+          if(redirect) {
+             this.router.navigate(["/home"]);
+          }
         })
       ),
     { dispatch: false }

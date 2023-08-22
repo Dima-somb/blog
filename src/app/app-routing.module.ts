@@ -7,7 +7,6 @@ import {SingleComponent} from "./pages/single/single.component";
 import {AuthGuard} from "./pages/auth/services/auth-guard";
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: "full"},
   {
     path: 'home',
     component: HomeComponent,
@@ -22,6 +21,7 @@ const routes: Routes = [
   },
   // {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
+  {path: '', redirectTo: '/home', pathMatch: "full"},
 ];
 
 @NgModule({
