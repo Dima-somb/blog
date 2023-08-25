@@ -1,5 +1,6 @@
 import {createAction, props} from "@ngrx/store";
-import {Post} from "../../services/posts.service";
+import {Post} from "../../models/models";
+
 
 
 const LOAD_ALL_POSTS = '[Posts] loadAllPosts';

@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
-import {Category} from "../../services/posts.service";
 import {AppState} from "../../index";
 import {Store} from "@ngrx/store";
 import {selectCategories} from "../../store/selectors/posts.selector";
 import {PostActions} from "../../store/action-types";
+import {Category} from "../../models/models";
 
 @Component({
   selector: 'app-sidebar',

@@ -33,16 +33,16 @@ export class PostsEffects {
     )
   );
 
-  loadAllPostById$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(PostActions.loadPostByID),
-      mergeMap(({id}) =>
-        this.postsService.loadPostById(id).pipe(
-          map(post => PostActions.loadPostByIDSuccess({ post }))
-        )
-      )
-    )
-  );
+  // loadAllPostById$ = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(PostActions.loadPostByID),
+  //     mergeMap(({id}) =>
+  //       this.postsService.loadPostById(id).pipe(
+  //         map(post => PostActions.loadPostByIDSuccess({ post }))
+  //       )
+  //     )
+  //   )
+  // );
 
   loadAllCategories$ = createEffect(() =>
     this.actions$.pipe(

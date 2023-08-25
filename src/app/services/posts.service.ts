@@ -1,28 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {Observable, shareReplay, tap} from "rxjs";
+import {Observable, shareReplay} from "rxjs";
 import {Params} from "@angular/router";
-
-
-
-export interface Post  {
-  _id: string;
-  title: string;
-  desc: string;
-  username: string;
-  categories: string[];
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
-
-export interface Category {
-  _id: string;
-  name: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
+import {Category, Post} from "../models/models";
 
 
 @Injectable({

@@ -19,7 +19,6 @@ const routes: Routes = [
       post: PostResolver
     }
   },
-  // {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: '', redirectTo: '/home', pathMatch: "full"},
 ];

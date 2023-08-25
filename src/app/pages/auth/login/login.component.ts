@@ -1,18 +1,19 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Auth} from "../services/auth";
-import {noop, tap} from "rxjs";
+import {filter, noop, takeUntil, tap} from "rxjs";
 import {Router} from "@angular/router";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../index";
 import {AuthActions} from "../action-types";
+import {ClearObservable} from "../../../services/clear-observable";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent extends ClearObservable implements OnInit {
 
   loginForm!: FormGroup;
   errorMessage = "";
@@ -22,7 +23,9 @@ export class LoginComponent implements OnInit {
     private auth: Auth,
     private router: Router,
     private store: Store<AppState>
-  ) { }
+  ) {
+    super()
+  }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -37,7 +40,10 @@ export class LoginComponent implements OnInit {
 
     this.auth.authLogin(value)
       .pipe(
-        tap(user => this.store.dispatch(AuthActions.login({user, redirect: true}))
+        filter(Boolean),
+        takeUntil(this.destroy$),
+        tap(user =>
+            this.store.dispatch(AuthActions.login({user, redirect: true}))
         )
       )
       .subscribe(

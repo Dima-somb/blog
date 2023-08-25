@@ -1,6 +1,6 @@
-import {Category, Post} from "../../services/posts.service";
 import {createReducer, on} from "@ngrx/store";
 import {PostActions} from "../action-types";
+import {Category, Post} from "../../models/models";
 
 export interface PostState {
   posts: Post[];

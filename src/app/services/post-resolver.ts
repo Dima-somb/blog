@@ -1,10 +1,11 @@
 import {Injectable} from "@angular/core";
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
-import {Post, PostsService} from "./posts.service";
+import {PostsService} from "./posts.service";
 import {map, Observable} from "rxjs";
 import {Store} from "@ngrx/store";
 import {AppState} from "../index";
 import {PostActions} from "../store/action-types";
+import {Post} from "../models/models";
 
 @Injectable()
 export class PostResolver implements Resolve<Post> {

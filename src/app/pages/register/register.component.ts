@@ -2,13 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Auth} from "../auth/services/auth";
 import {Router} from "@angular/router";
+import {filter, takeUntil} from "rxjs";
+import {ClearObservable} from "../../services/clear-observable";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent extends ClearObservable implements OnInit {
 
   registerFormGroup!: FormGroup;
   errorRegistration = false;
@@ -18,7 +20,7 @@ export class RegisterComponent implements OnInit {
     private auth: Auth,
     private router: Router
   ) {
-
+    super();
   }
 
 
@@ -38,7 +40,12 @@ export class RegisterComponent implements OnInit {
   submitForm() {
     const val = this.registerFormGroup.value;
 
-    this.auth.authRegister(val).subscribe(() => {
+    this.auth.authRegister(val)
+      .pipe(
+        filter(Boolean),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(() => {
       this.registerFormGroup.reset();
       this.router.navigate(['/login']);
 
