@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Post} from "../../services/posts.service";
 
 
@@ -10,5 +10,5 @@ import {Post} from "../../services/posts.service";
 })
 export class SinglePostComponent {
   @Input() post!: Post;
-  
+
 }

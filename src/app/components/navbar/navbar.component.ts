@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {select, Store} from "@ngrx/store";
-import {map, Observable, tap} from "rxjs";
+import {Store} from "@ngrx/store";
+import {Observable} from "rxjs";
 import {AppState} from "../../index";
 import {getUser, isLoggedIn, isLoggedOut} from "../../pages/auth/selectors/auth.selectors";
 import {logout} from "../../pages/auth/actions/auth.actions";
-import {Router} from "@angular/router";
 import {User} from "../../pages/auth/reducers";
 
 
@@ -16,13 +15,13 @@ import {User} from "../../pages/auth/reducers";
 export class NavbarComponent implements OnInit{
 
   isLoggedIn$: Observable<boolean> = this.store.select(isLoggedIn);
-
   isLoggedOut$: Observable<boolean> = this.store.select(isLoggedOut);
+
   user$: Observable<User | null> = this.store.select(getUser);
+
 
   constructor(
     private store: Store<AppState>,
-    private router: Router
   ) {
   }
 

@@ -1,7 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Post, PostsService} from "../../services/posts.service";
 import {ActivatedRoute} from "@angular/router";
-import {Observable, of} from "rxjs";
 import {AppState} from "../../index";
 import {Store} from "@ngrx/store";
 import {PostActions} from "../../store/action-types";
@@ -10,6 +9,8 @@ import {
   selectPostsByName,
   selectPostsStore
 } from "../../store/selectors/posts.selector";
+
+
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',

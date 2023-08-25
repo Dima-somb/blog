@@ -19,8 +19,6 @@ export class SingleComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    // this.post = this.route.snapshot.data["post"];
-
 
     this.store.select(selectPostByIdStore).pipe(
       filter(Boolean)

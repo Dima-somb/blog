@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
 import {Post, PostsService} from "./posts.service";
-import {filter, first, map, mergeMap, Observable, of, switchAll, switchMap, take, tap} from "rxjs";
+import {map, Observable} from "rxjs";
 import {Store} from "@ngrx/store";
 import {AppState} from "../index";
 import {PostActions} from "../store/action-types";
