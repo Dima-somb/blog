@@ -46,4 +46,9 @@ export class PostsService {
       )
   }
 
+
+  createNewPost(postData: any): Observable<Post> {
+    return this.http.post<Post>(`${this.baseUrl}/posts/`,  postData);
+  }
+
 }

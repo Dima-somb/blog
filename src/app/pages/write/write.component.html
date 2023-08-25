@@ -1,20 +1,41 @@
 <div class="write">
-  <img class="write-img" src="assets/unseen-studio-unsplash.jpg" alt="write-banner">
-  <form class="write-form">
+  <img *ngIf="url" class="write-img" [src]="url" alt="write-banner">
+  <form class="write-form"
+        [formGroup]="uploadPostForm"
+        (ngSubmit)="onSubmit()"
+  >
     <div class="write-form-group">
       <label for="file-input">
         <i class="write-icon fas fa-plus"></i>
       </label>
-      <input type="file" id="file-input" [ngStyle]="{display: 'none'}">
-      <input placeholder="Title" class="write-input" [autofocus]="true">
+      <input
+        type="file"
+        id="file-input"
+        [ngStyle]="{display: 'none'}"
+        formControlName="imgFile"
+        (change)="onFileSelect($event)"
+      >
+      <input
+        placeholder="Title"
+        class="write-input"
+        [autofocus]="true"
+        formControlName="title"
+      >
     </div>
     <div class="write-form-group">
       <textarea
           placeholder="Tell your story..."
           class="write-input write-text"
           [autofocus]="true"
+          formControlName="description"
       ></textarea>
     </div>
-    <button class="write-submit">Publish</button>
+    <button
+      class="write-submit"
+      [disabled]="uploadPostForm.invalid"
+      type="submit"
+    >
+      Publish
+    </button>
   </form>
 </div>
