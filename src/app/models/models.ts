@@ -7,6 +7,7 @@ export interface Post  {
   createdAt: string;
   updatedAt: string;
   __v: number;
+  imgname?: string
 }
 
 export interface Category {

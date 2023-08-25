@@ -51,4 +51,8 @@ export class PostsService {
     return this.http.post<Post>(`${this.baseUrl}/posts/`,  postData);
   }
 
+  uploadPhotoForEachPost(file: any): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/upload`, file);
+  }
+
 }

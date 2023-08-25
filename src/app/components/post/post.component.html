@@ -1,6 +1,6 @@
 <div class="post-list">
   <div class="post" *ngFor="let post of posts">
-    <img class="post-img" src="assets/absolutvision-unsplash.jpg" alt="">
+    <img class="post-img" [src]="'http://localhost:3000/images/' + post.imgname" alt="">
     <div class="post-info">
       <div class="post-cats" *ngIf="post.categories.length > 0;else noCategories">
         <span class="post-cat" *ngFor="let category of post.categories">{{category}}</span>

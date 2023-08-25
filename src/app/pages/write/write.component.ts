@@ -49,7 +49,7 @@ export class WriteComponent extends ClearObservable implements OnInit{
       this.selectedFile = file;
 
       console.log('this.selectedFile', this.selectedFile)
-      this.url = URL.createObjectURL(file)
+      this.url = URL.createObjectURL(file);
     }
   }
 
@@ -59,12 +59,22 @@ export class WriteComponent extends ClearObservable implements OnInit{
       username: this.username,
       title: this.uploadPostForm.get('title')?.value,
       desc: this.uploadPostForm.get('description')?.value,
-    }
+      imgname: this.selectedFile.name
+    };
+
+    //Send new post
 
     this.postsService.createNewPost(postData)
       .pipe(
         takeUntil(this.destroy$)
       )
       .subscribe();
+
+    // Send image
+
+   const formData = new FormData();
+    formData.append('file', this.selectedFile);
+    this.postsService.uploadPhotoForEachPost(formData).subscribe()
   }
 }
+
