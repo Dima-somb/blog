@@ -40,7 +40,8 @@ export class SinglePostComponent extends ClearObservable implements OnInit{
   }
 
   removePost() {
-
+    console.log('this.userName', this.userName);
+    console.log('this.post._id', this.post._id);
     if (this.userName && this.userName === this.post.username) {
       this.postsService.deletePost(this.userName, this.post._id)
         .pipe(
@@ -52,7 +53,7 @@ export class SinglePostComponent extends ClearObservable implements OnInit{
         )
         .subscribe(
           () => {
-            this.store.dispatch(PostActions.loadAllPosts());
+            this.store.dispatch(PostActions.resetPostsState());
 
             this.router.navigate(['/home']);
           });
