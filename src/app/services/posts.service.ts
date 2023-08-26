@@ -55,4 +55,10 @@ export class PostsService {
     return this.http.post<void>(`${this.baseUrl}/upload`, file);
   }
 
+  deletePost(username: string,id: string) {
+    return this.http.delete<void>(`${this.baseUrl}/posts/${id}`, {
+      body: {username: username}
+    });
+  }
+
 }

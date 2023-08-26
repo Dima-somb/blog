@@ -8,6 +8,8 @@ import {ClearObservable} from "../../services/clear-observable";
 import {catchError, filter, finalize, mergeMap, Observable, takeUntil, throwError} from "rxjs";
 import {PostActions} from "../../store/action-types";
 import {Router} from "@angular/router";
+import {AppState} from "../../index";
+import {PostResolver} from "../../services/post-resolver";
 
 
 @Component({
@@ -25,8 +27,8 @@ export class WriteComponent extends ClearObservable implements OnInit{
   constructor(
     private postsService:PostsService,
     private fb: FormBuilder,
-    private store: Store<AuthState>,
-    private router: Router
+    private store: Store<AppState>,
+    private router: Router,
   ) {
     super()
   }
@@ -80,8 +82,7 @@ export class WriteComponent extends ClearObservable implements OnInit{
       )
       .subscribe(
         () => {
-          this.store.dispatch(PostActions.loadAllPosts());
-
+          this.store.dispatch(PostActions.resetPostsState());
           this.router.navigate(['/home']);
         },
 

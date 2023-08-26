@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {PostsService} from "../../services/posts.service";
 import {PostActions} from "../action-types";
-import {catchError, concatMap, map, mergeMap, of, withLatestFrom} from "rxjs";
+import {catchError, concatMap, map, mergeMap, of, switchAll, switchMap, withLatestFrom} from "rxjs";
 import {AppState} from "../../index";
 import {Store} from "@ngrx/store";
 import {selectCategories, selectPostsStore} from "../selectors/posts.selector";
@@ -20,7 +20,7 @@ export class PostsEffects {
     this.actions$.pipe(
       ofType(PostActions.loadAllPosts),
       withLatestFrom(this.store.select(selectPostsStore)),
-      mergeMap(([action, posts]) => {
+      switchMap(([action, posts]) => {
         if (posts.length > 0) {
           return of(); // No need to proceed, return an empty observable
         } else {
@@ -30,7 +30,7 @@ export class PostsEffects {
           );
         }
       })
-    )
+    ),
   );
 
   // loadAllPostById$ = createEffect(() =>

@@ -6,6 +6,7 @@ import {Post} from "../../models/models";
 const LOAD_ALL_POSTS = '[Posts] loadAllPosts';
 const LOAD_ALL_POSTS_SUCCESS = '[Posts] loadAllPostsSuccess';
 const LOAD_ALL_POSTS_FAILURE = '[Posts] loadAllPostsFailure';
+const RESET_POSTS_STATE = "[Posts] Reset posts state";
 
 const LOAD_POST_BY_ID = '[Post] load post by ID';
 const LOAD_POST_BY_ID_SUCCESS = '[Post] load post by ID success';
@@ -17,6 +18,10 @@ const LOAD_ALL_CATEGORIES_SUCCESS = '[Categories] load all categories success';
 const LOAD_ALL_CATEGORIES_FAILURE = '[Categories] load all categories failure';
 
 
+
+export const resetPostsState = createAction(
+  RESET_POSTS_STATE,
+);
 
 export const loadAllPosts = createAction(
   LOAD_ALL_POSTS,

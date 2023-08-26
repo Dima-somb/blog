@@ -1,6 +1,7 @@
 import {createReducer, on} from "@ngrx/store";
 import {PostActions} from "../action-types";
 import {Category, Post} from "../../models/models";
+import {resetPostsState} from "../actions/post-actions";
 
 export interface PostState {
   posts: Post[];
@@ -34,6 +35,7 @@ export const postReducer = createReducer(
     ...state,
     error
   })),
+  on(PostActions.resetPostsState, state => ({ ...state, posts: initialState.posts })),
 
   //GET POST BY ID
 
