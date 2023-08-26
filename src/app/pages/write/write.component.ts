@@ -5,7 +5,10 @@ import {Store} from "@ngrx/store";
 import {AuthState} from "../auth/reducers";
 import {getUser} from "../auth/selectors/auth.selectors";
 import {ClearObservable} from "../../services/clear-observable";
-import {filter, takeUntil} from "rxjs";
+import {catchError, filter, finalize, mergeMap, Observable, takeUntil, throwError} from "rxjs";
+import {PostActions} from "../../store/action-types";
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-write',
@@ -22,7 +25,8 @@ export class WriteComponent extends ClearObservable implements OnInit{
   constructor(
     private postsService:PostsService,
     private fb: FormBuilder,
-    private store: Store<AuthState>
+    private store: Store<AuthState>,
+    private router: Router
   ) {
     super()
   }
@@ -54,7 +58,6 @@ export class WriteComponent extends ClearObservable implements OnInit{
   }
 
   onSubmit() {
-
     const postData = {
       username: this.username,
       title: this.uploadPostForm.get('title')?.value,
@@ -62,19 +65,36 @@ export class WriteComponent extends ClearObservable implements OnInit{
       imgname: this.selectedFile.name
     };
 
-    //Send new post
-
-    this.postsService.createNewPost(postData)
-      .pipe(
-        takeUntil(this.destroy$)
-      )
-      .subscribe();
-
-    // Send image
-
-   const formData = new FormData();
+    const formData = new FormData();
     formData.append('file', this.selectedFile);
-    this.postsService.uploadPhotoForEachPost(formData).subscribe()
+
+
+    this.createPostAndUploadPhoto(postData, formData)
+      .pipe(
+        filter(Boolean),
+        takeUntil(this.destroy$),
+        catchError((error) => {
+          console.log('An error occurred: ', error);
+          return throwError(error);
+        })
+      )
+      .subscribe(
+        () => {
+          this.store.dispatch(PostActions.loadAllPosts());
+
+          this.router.navigate(['/home']);
+        },
+
+      );
+  }
+
+  createPostAndUploadPhoto(postData:any, formData:any):Observable<any> {
+    return this.postsService.createNewPost(postData)
+      .pipe(
+        mergeMap(() => this.postsService.uploadPhotoForEachPost(formData)),
+        finalize(() => {
+        })
+      );
   }
 }
 
