@@ -22,6 +22,8 @@ import {AuthModule} from "./pages/auth/auth.module";
 import {metaReducers, reducers} from "./index";
 import { EffectsModule } from '@ngrx/effects';
 import {PostsEffects} from "./store/effects/posts.effects";
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { SafePipe } from './safe.pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import {PostsEffects} from "./store/effects/posts.effects";
     SinglePostComponent,
     WriteComponent,
     SettingComponent,
-    RegisterComponent
+    RegisterComponent,
+    SafePipe,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,7 @@ import {PostsEffects} from "./store/effects/posts.effects";
     StoreModule.forRoot(reducers, {metaReducers}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([PostsEffects]),
+    AngularEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

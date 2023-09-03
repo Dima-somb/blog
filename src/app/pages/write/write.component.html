@@ -23,12 +23,17 @@
       >
     </div>
     <div class="write-form-group">
-      <textarea
-          placeholder="Tell your story..."
-          class="write-input write-text"
-          [autofocus]="true"
-          formControlName="description"
-      ></textarea>
+<!--      <textarea-->
+<!--          placeholder="Tell your story..."-->
+<!--          class="write-input write-text"-->
+<!--          [autofocus]="true"-->
+<!--          formControlName="description"-->
+<!--      ></textarea>-->
+      <angular-editor
+        [placeholder]="'Tell your story...'"
+        formControlName="description"
+        [config]="config"
+      ></angular-editor>
     </div>
     <button
       class="write-submit"
@@ -39,3 +44,7 @@
     </button>
   </form>
 </div>
+
+
+<div [innerHTML]="yourHtmlContent"></div>
+

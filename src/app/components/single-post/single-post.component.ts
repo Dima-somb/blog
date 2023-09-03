@@ -40,8 +40,6 @@ export class SinglePostComponent extends ClearObservable implements OnInit{
   }
 
   removePost() {
-    console.log('this.userName', this.userName);
-    console.log('this.post._id', this.post._id);
     if (this.userName && this.userName === this.post.username) {
       this.postsService.deletePost(this.userName, this.post._id)
         .pipe(

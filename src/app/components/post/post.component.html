@@ -12,7 +12,7 @@
       <span class="post-date">{{post?.createdAt | date}}</span>
     </div>
     <div class="post-desc">
-      <p>{{post?.desc}}</p>
+      <p [innerHTML]="post.desc | safe:'html'"></p>
     </div>
   </div>
 </div>

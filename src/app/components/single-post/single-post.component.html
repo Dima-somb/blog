@@ -24,7 +24,7 @@
       <span class="single-post-date">{{post.createdAt | date}}</span>
     </div>
     <div class="single-post-desc">
-      <p>{{post.desc}}</p>
+      <p [innerHTML]="post.desc | safe:'html'"></p>
     </div>
   </div>
 </div>

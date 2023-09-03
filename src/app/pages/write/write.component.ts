@@ -2,14 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {PostsService} from "../../services/posts.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Store} from "@ngrx/store";
-import {AuthState} from "../auth/reducers";
 import {getUser} from "../auth/selectors/auth.selectors";
 import {ClearObservable} from "../../services/clear-observable";
 import {catchError, filter, finalize, mergeMap, Observable, takeUntil, throwError} from "rxjs";
 import {PostActions} from "../../store/action-types";
 import {Router} from "@angular/router";
 import {AppState} from "../../index";
-import {PostResolver} from "../../services/post-resolver";
+import {AngularEditorConfig} from "@kolkov/angular-editor";
+import {DomSanitizer} from "@angular/platform-browser";
 
 
 @Component({
@@ -23,6 +23,20 @@ export class WriteComponent extends ClearObservable implements OnInit{
   selectedFile!: any;
   url: any;
   username!: string;
+  yourHtmlContent:any;
+
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '15rem',
+    minHeight: '5rem',
+    placeholder: 'Enter text here...',
+    translate: 'no',
+    defaultParagraphSeparator: 'p',
+    defaultFontName: "Varela Round",
+
+  };
+  htmlText!: any;
 
   constructor(
     private postsService:PostsService,
@@ -30,7 +44,8 @@ export class WriteComponent extends ClearObservable implements OnInit{
     private store: Store<AppState>,
     private router: Router,
   ) {
-    super()
+    super();
+
   }
 
   ngOnInit() {
@@ -54,7 +69,6 @@ export class WriteComponent extends ClearObservable implements OnInit{
       const file = event.target.files[0];
       this.selectedFile = file;
 
-      console.log('this.selectedFile', this.selectedFile)
       this.url = URL.createObjectURL(file);
     }
   }
