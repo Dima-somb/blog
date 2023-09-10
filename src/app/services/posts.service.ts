@@ -51,6 +51,14 @@ export class PostsService {
     return this.http.post<Post>(`${this.baseUrl}/posts/`,  postData);
   }
 
+  updateExistingPost(username: string, {title, desc, _id}: any): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/posts/${_id}`,{
+        username: username,
+        title,
+        desc
+    });
+  }
+
   uploadPhotoForEachPost(file: any): Observable<void> {
     return this.http.post<void>(`${this.baseUrl}/upload`, file);
   }

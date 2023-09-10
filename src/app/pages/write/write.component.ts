@@ -9,7 +9,8 @@ import {PostActions} from "../../store/action-types";
 import {Router} from "@angular/router";
 import {AppState} from "../../index";
 import {AngularEditorConfig} from "@kolkov/angular-editor";
-import {DomSanitizer} from "@angular/platform-browser";
+import {CustomErrorHandlingService} from "../../services/custom-error-handling.service";
+
 
 
 @Component({
@@ -43,6 +44,7 @@ export class WriteComponent extends ClearObservable implements OnInit{
     private fb: FormBuilder,
     private store: Store<AppState>,
     private router: Router,
+    private customErrorHandling: CustomErrorHandlingService
   ) {
     super();
 
@@ -87,13 +89,8 @@ export class WriteComponent extends ClearObservable implements OnInit{
 
     this.createPostAndUploadPhoto(postData, formData)
       .pipe(
-        filter(Boolean),
-        takeUntil(this.destroy$),
-        catchError((error) => {
-          console.log('An error occurred: ', error);
-          return throwError(error);
-        })
-      )
+      this.customErrorHandling.customErrorHandling(this.destroy$)
+    )
       .subscribe(
         () => {
           this.store.dispatch(PostActions.resetPostsState());

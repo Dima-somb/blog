@@ -24,6 +24,7 @@ import { EffectsModule } from '@ngrx/effects';
 import {PostsEffects} from "./store/effects/posts.effects";
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { SafePipe } from './safe.pipe';
+import {CustomErrorHandlingService} from "./services/custom-error-handling.service";
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import { SafePipe } from './safe.pipe';
     EffectsModule.forRoot([PostsEffects]),
     AngularEditorModule
   ],
-  providers: [],
+  providers: [CustomErrorHandlingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
