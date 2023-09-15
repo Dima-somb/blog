@@ -37,5 +37,19 @@ export const authReducer = createReducer(
       user: null,
     }
   }),
+  on(AuthActions.getUser, (state, action) => ({
+    ...state
+  })),
+
+  on(AuthActions.getUserSuccess, (state, action) => {
+    return {
+      user: action.user,
+    }
+  }),
+  on(AuthActions.getUserFailure, (state, error) => ({
+    ...state,
+     error
+  }))
+
 );
 

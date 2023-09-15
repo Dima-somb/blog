@@ -1,27 +1,27 @@
-<div class="settings">
+<div class="settings" *ngIf="userSettingData">
   <div class="settings-wrapper">
       <div class="settings-title">
         <span class="settings-update-title">Update Your Account</span>
         <span class="settings-delete-title">Delete Account</span>
       </div>
-    <form class="settings-form">
+    <form class="settings-form" [formGroup]="updateUserForm" (ngSubmit)="onSubmit()">
         <label>Profile picture</label>
       <div class="settings-pp">
         <img
-          src="assets/aaron-burden-unsplash.jpg"
+          [src]="'http://localhost:3000/images/' + userSettingData.profilePic"
           alt=""
         >
         <label for="file-input">
           <i class="settings-pp-icon far fa-user-circle"></i>
         </label>
-        <input type="file" id="file-input" [ngStyle]="{display: 'none'}">
+        <input type="file" id="file-input" [ngStyle]="{display: 'none'}" (change)="onFileSelect($event)">
       </div>
       <label>Username</label>
-      <input type="text" placeholder="Safak">
+      <input type="text" [placeholder]="userSettingData.username" formControlName="username">
       <label>Email</label>
-      <input type="text" placeholder="enter email">
+      <input type="text" [placeholder]="userSettingData.email" formControlName="email">
       <label>Password</label>
-      <input type="password" placeholder="enter password">
+      <input type="password" formControlName="password">
 
       <button class="settings-submit">Update</button>
     </form>

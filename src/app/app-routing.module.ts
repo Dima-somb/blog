@@ -6,6 +6,7 @@ import {PostResolver} from "./services/post-resolver";
 import {SingleComponent} from "./pages/single/single.component";
 import {AuthGuard} from "./pages/auth/services/auth-guard";
 import {WriteComponent} from "./pages/write/write.component";
+import {SettingComponent} from "./pages/setting/setting.component";
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
   },
   {path: 'register', component: RegisterComponent},
   {path: 'write', component: WriteComponent},
+  {path: 'setting', component: SettingComponent},
   {path: '', redirectTo: '/home', pathMatch: "full"},
 ];
 

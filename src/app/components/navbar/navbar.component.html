@@ -15,7 +15,7 @@
     </ul>
   </div>
   <div class="right" *ngIf="user$ | async as user">
-    <img class="right-image" [src]="user.profilePic" alt="">
+    <img class="right-image" [src]="'http://localhost:3000/images/' + user.profilePic" alt=""  [routerLink]="['/setting']">
     <i class="search-icon fa-solid fa-magnifying-glass"></i>
   </div>
 </div>
