@@ -77,7 +77,7 @@ export class WriteComponent extends ClearObservable implements OnInit{
 
   onSubmit() {
     const postData = {
-      username: this.username,
+      username: this.uploadPostForm.get('title')?.value,
       title: this.uploadPostForm.get('title')?.value,
       desc: this.uploadPostForm.get('description')?.value,
       imgname: this.selectedFile.name

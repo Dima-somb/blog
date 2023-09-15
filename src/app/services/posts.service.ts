@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable, shareReplay} from "rxjs";
 import {Params} from "@angular/router";
 import {Category, Post} from "../models/models";
+import {User} from "../pages/auth/reducers";
 
 
 @Injectable({
