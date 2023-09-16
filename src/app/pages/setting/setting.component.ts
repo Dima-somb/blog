@@ -13,6 +13,7 @@ import {User} from "../auth/reducers";
 import {AuthActions} from "../auth/action-types";
 import {CommonService} from "../../services/common.service";
 
+
 @Component({
   selector: 'app-setting',
   templateUrl: './setting.component.html',
@@ -21,10 +22,10 @@ import {CommonService} from "../../services/common.service";
 export class SettingComponent extends ClearObservable implements OnInit {
 
   userSetting$!: Observable<User | null>;
-  userSettingData!: any;
-  selectedPhoto: any;
+  userSettingData!: User | null;
+  selectedPhoto!: File;
   updateUserForm!: FormGroup;
-  url: any;
+  url!: string;
 
   constructor(
     private store: Store<AppState>,
@@ -49,6 +50,7 @@ export class SettingComponent extends ClearObservable implements OnInit {
         this.customErrorHandling.customErrorHandling(this.destroy$)
       )
       .subscribe(userData => {
+        console.log('userData', userData)
         this.userSettingData = userData;
 
         this.initializeForm();
@@ -67,19 +69,20 @@ export class SettingComponent extends ClearObservable implements OnInit {
   }
 
   setUpPropertyForFormField() {
-    if (this.userSettingData && this.userSettingData._id || this.userSettingData.userId) {
+    if (this.userSettingData && this.userSettingData?._id || this.userSettingData?.userId) {
       this.updateUserForm.patchValue({
-        profilePic: this.userSettingData.profilePic || null,
-        username: this.userSettingData.username || null,
-        email: this.userSettingData.email || null,
+        profilePic: this.userSettingData?.profilePic || null,
+        username: this.userSettingData?.username || null,
+        email: this.userSettingData?.email || null,
         password: ''
       });
     }
   }
 
-  onFileSelect(event: any) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
+  onFileSelect(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement.files && inputElement.files.length > 0) {
+      const file = inputElement.files[0];
       this.selectedPhoto = file;
 
       this.url = URL.createObjectURL(file);
@@ -88,10 +91,10 @@ export class SettingComponent extends ClearObservable implements OnInit {
 
   createUserObj() {
     return  {
-      userId: this.userSettingData._id || this.userSettingData.userId,
-      profilePic: this.selectedPhoto ? this.selectedPhoto.name : this.userSettingData.profilePic,
-      username: this.updateUserForm.get('username')?.value || this.userSettingData.username,
-      email: this.updateUserForm.get('email')?.value || this.userSettingData.email,
+      userId: this.userSettingData?._id || this.userSettingData?.userId,
+      profilePic: this.selectedPhoto ? this.selectedPhoto.name : this.userSettingData?.profilePic,
+      username: this.updateUserForm.get('username')?.value || this.userSettingData?.username,
+      email: this.updateUserForm.get('email')?.value || this.userSettingData?.email,
       password: this.updateUserForm.get('password')?.value || ''
     };
   }

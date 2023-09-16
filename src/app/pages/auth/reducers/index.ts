@@ -3,7 +3,7 @@ import {AuthActions} from "../action-types";
 
 
 export interface User {
-  _id: any;
+  _id: number;
   username: string;
   email: string;
   password: string;
@@ -11,7 +11,9 @@ export interface User {
   createdAt: string;
   updatedAt: string;
   __v: number;
+  userId?: number;
 }
+
 
 export interface AuthState {
   user: User | null;
