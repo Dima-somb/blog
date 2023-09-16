@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 import {AppState} from "../../index";
 import {AngularEditorConfig} from "@kolkov/angular-editor";
 import {CustomErrorHandlingService} from "../../services/custom-error-handling.service";
+import {CommonService} from "../../services/common.service";
 
 
 
@@ -44,7 +45,8 @@ export class WriteComponent extends ClearObservable implements OnInit{
     private fb: FormBuilder,
     private store: Store<AppState>,
     private router: Router,
-    private customErrorHandling: CustomErrorHandlingService
+    private customErrorHandling: CustomErrorHandlingService,
+    private commonService: CommonService
   ) {
     super();
 
@@ -100,13 +102,8 @@ export class WriteComponent extends ClearObservable implements OnInit{
       );
   }
 
-  createPostAndUploadPhoto(postData:any, formData:any):Observable<any> {
-    return this.postsService.createNewPost(postData)
-      .pipe(
-        mergeMap(() => this.postsService.uploadPhotoForEachPost(formData)),
-        finalize(() => {
-        })
-      );
+  createPostAndUploadPhoto(postData:any, formData:any) {
+    return this.commonService.makeApiCallAndUploadPhoto(this.postsService.createNewPost(postData), formData)
   }
 }
 
