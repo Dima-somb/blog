@@ -43,9 +43,9 @@ export class SettingComponent extends ClearObservable implements OnInit {
        filter(Boolean)
      )
      .subscribe(userData => {
-       console.log('userData', userData)
+
        this.userSettingData = userData
-       this.initializeForm();
+         this.initializeForm();
      });
   }
 
@@ -57,7 +57,7 @@ export class SettingComponent extends ClearObservable implements OnInit {
       password: [null]
     });
 
-    if (this.userSettingData && this.userSettingData.userId) {
+    if (this.userSettingData && this.userSettingData._id) {
       this.updateUserForm.patchValue({
         profilePic: this.userSettingData.profilePic || null,
         username: this.userSettingData.username || null,
@@ -79,12 +79,14 @@ export class SettingComponent extends ClearObservable implements OnInit {
   onSubmit() {
 
     const userObj = {
-      userId: this.userSettingData.userId,
+      userId: this.userSettingData._id,
       profilePic: this.selectedPhoto ? this.selectedPhoto.name : this.userSettingData.profilePic,
       username: this.updateUserForm.get('username')?.value || this.userSettingData.username,
       email: this.updateUserForm.get('email')?.value || this.userSettingData.email,
       password: this.updateUserForm.get('password')?.value || ''
     };
+
+    console.log('userObj', userObj);
 
     const formData = new FormData();
     formData.append('file', this.selectedPhoto);
