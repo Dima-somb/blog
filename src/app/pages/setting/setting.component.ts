@@ -36,17 +36,17 @@ export class SettingComponent extends ClearObservable implements OnInit {
     super();
   }
 
- ngOnInit() {
+  ngOnInit() {
 
-  this.store.select(getUser)
-     .pipe(
-       filter(Boolean)
-     )
-     .subscribe(userData => {
+    this.store.select(getUser)
+      .pipe(
+        filter(Boolean)
+      )
+      .subscribe(userData => {
 
-       this.userSettingData = userData
-         this.initializeForm();
-     });
+        this.userSettingData = userData
+        this.initializeForm();
+      });
   }
 
   initializeForm() {
@@ -98,9 +98,9 @@ export class SettingComponent extends ClearObservable implements OnInit {
       )
       .subscribe(
         () => {
-           this.store.dispatch(AuthActions.getUser({user: userObj}))
-           localStorage.setItem("user", JSON.stringify(userObj));
-           this.router.navigate(['/home']);
+          this.store.dispatch(AuthActions.getUser({user: userObj}))
+          localStorage.setItem("user", JSON.stringify(userObj));
+          this.router.navigate(['/home']);
         },
 
       );
