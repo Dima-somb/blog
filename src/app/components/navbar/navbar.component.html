@@ -19,3 +19,25 @@
     <i class="search-icon fa-solid fa-magnifying-glass"></i>
   </div>
 </div>
+
+
+<!-- Simulate a smartphone / tablet -->
+<div class="mobile-container">
+
+  <!-- Top Navigation Menu -->
+  <div class="topnav">
+    <div #myLinks id="myLinks">
+      <a (click)="toggleMyLinks()" routerLink="home">HOME</a>
+      <a (click)="toggleMyLinks()">CONTACT</a>
+      <a (click)="toggleMyLinks()" routerLink="write">WRITE</a>
+      <a *ngIf="isLoggedIn$ | async" (click)="logout();toggleMyLinks()">LOGOUT</a>
+    </div>
+    <a class="icon" (click)="toggleMyLinks()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+
+
+
+

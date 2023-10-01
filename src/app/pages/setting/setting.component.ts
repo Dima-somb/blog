@@ -50,7 +50,6 @@ export class SettingComponent extends ClearObservable implements OnInit {
         this.customErrorHandling.customErrorHandling(this.destroy$)
       )
       .subscribe(userData => {
-        console.log('userData', userData)
         this.userSettingData = userData;
 
         this.initializeForm();
@@ -90,17 +89,29 @@ export class SettingComponent extends ClearObservable implements OnInit {
   }
 
   createUserObj() {
-    return  {
-      userId: this.userSettingData?._id || this.userSettingData?.userId,
-      profilePic: this.selectedPhoto ? this.selectedPhoto.name : this.userSettingData?.profilePic,
-      username: this.updateUserForm.get('username')?.value || this.userSettingData?.username,
-      email: this.updateUserForm.get('email')?.value || this.userSettingData?.email,
-      password: this.updateUserForm.get('password')?.value || ''
-    };
+
+    if (this.updateUserForm.get('password')?.value !== '') {
+      return  {
+        userId: this.userSettingData?._id || this.userSettingData?.userId,
+        profilePic: this.selectedPhoto ? this.selectedPhoto.name : this.userSettingData?.profilePic,
+        username: this.updateUserForm.get('username')?.value || this.userSettingData?.username,
+        email: this.updateUserForm.get('email')?.value || this.userSettingData?.email,
+        password: this.updateUserForm.get('password')?.value
+      };
+    } else {
+      return  {
+        userId: this.userSettingData?._id || this.userSettingData?.userId,
+        profilePic: this.selectedPhoto ? this.selectedPhoto.name : this.userSettingData?.profilePic,
+        username: this.updateUserForm.get('username')?.value || this.userSettingData?.username,
+        email: this.updateUserForm.get('email')?.value || this.userSettingData?.email
+      };
+    }
   }
 
   onSubmit() {
     const userObj = this.createUserObj();
+
+
     const formData = new FormData();
 
     formData.append('file', this.selectedPhoto);

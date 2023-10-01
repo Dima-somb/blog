@@ -23,6 +23,7 @@
       display: flex;
       justify-content: center;
       list-style: none;
+      margin-bottom: 0;
        a {
          text-decoration: none;
          color: #666;
@@ -62,3 +63,56 @@
 .center {
   flex: 9;
 }
+
+
+@media (max-width: 768px) {
+  .navbar {
+    display: none;
+  }
+
+  .mobile-container {
+    margin: auto;
+    min-height: 70px;
+    color: white;
+    border-radius: 10px;
+  }
+
+  .topnav {
+    position: relative;
+  }
+
+  .topnav #myLinks {
+    display: none;
+  }
+#myLinks a {
+  &:hover {
+    color: black;
+  }
+}
+  .topnav a {
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+    color: #666;
+    text-align: center;
+  }
+
+
+  .topnav a.icon {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 55px;
+    color: #666666;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 768px) {
+  .mobile-container {
+   display: none;
+  }
+}
+

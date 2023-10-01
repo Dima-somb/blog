@@ -1,7 +1,6 @@
 .sidebar {
   flex: 3;
   height: fit-content;
-  margin: 20px;
   padding-bottom: 30px;
   background-color: #fdfbfb;
   border-radius: 10px;
@@ -17,7 +16,7 @@
 }
 
 .sidebar-title {
-  margin: 10px;
+  margin-bottom: 10px;
   padding: 5px;
   width: 80%;
   border-top: solid 1px #a7a4a4;

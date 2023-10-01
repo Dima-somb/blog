@@ -1,6 +1,7 @@
 .header {
   margin-top: 60px;
 
+
   &-titles {
     display: flex;
     flex-direction: column;
@@ -10,14 +11,14 @@
   }
 
   &-title-sm {
-    position: absolute;
-    top: 10%;
+    //position: absolute;
+    //top: 10%;
     font-size: 20px;
 
   }
   &-title-lg {
-    position: absolute;
-    top: 13%;
+    //position: absolute;
+    //top: 13%;
     font-size: 100px;
   }
   &-img {
@@ -25,5 +26,11 @@
     height: 450px;
     margin-top: 80px;
     object-fit: cover;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    display: none;
   }
 }
